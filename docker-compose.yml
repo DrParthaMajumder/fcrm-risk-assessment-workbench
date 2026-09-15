@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-fcrm}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fcrm}
+      POSTGRES_DB: ${POSTGRES_DB:-fcrm_workbench}
+    ports:
+      - "5432:5432"
+    volumes:
+      - fcrm_pgdata:/var/lib/postgresql/data
+      - ./database/migrations:/docker-entrypoint-initdb.d:ro
+
+  backend:
+    build:
+      context: ./src/backend
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/backend:/app
+      - ./knowledge-base:/knowledge-base:ro
+
+  frontend:
+    build:
+      context: ./src/frontend/next-app
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/frontend/next-app:/app
+
+volumes:
+  fcrm_pgdata:
