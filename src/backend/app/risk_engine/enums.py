@@ -1,0 +1,61 @@
+from enum import StrEnum
+
+
+class RiskDimension(StrEnum):
+    CREDIT = "CREDIT"
+    FINANCIAL = "FINANCIAL"
+    BUSINESS = "BUSINESS"
+    DOCUMENT_COMPLIANCE = "DOCUMENT_COMPLIANCE"
+    MARKET_INDUSTRY = "MARKET_INDUSTRY"
+    REPUTATION_OPERATIONAL = "REPUTATION_OPERATIONAL"
+
+
+class RuleSeverity(StrEnum):
+    INFO = "INFO"
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    CRITICAL = "CRITICAL"
+
+
+class RuleStatus(StrEnum):
+    ACTIVE = "ACTIVE"
+    INACTIVE = "INACTIVE"
+    DRAFT = "DRAFT"
+
+
+class RuleOperator(StrEnum):
+    EQUALS = "EQUALS"
+    NOT_EQUALS = "NOT_EQUALS"
+    LESS_THAN = "LESS_THAN"
+    LESS_THAN_OR_EQUAL = "LESS_THAN_OR_EQUAL"
+    GREATER_THAN = "GREATER_THAN"
+    GREATER_THAN_OR_EQUAL = "GREATER_THAN_OR_EQUAL"
+    IS_NULL = "IS_NULL"
+    IS_NOT_NULL = "IS_NOT_NULL"
+    IN = "IN"
+    NOT_IN = "NOT_IN"
+
+
+class AssessmentStatus(StrEnum):
+    COMPLETED = "COMPLETED"
+    VALIDATION_FAILED = "VALIDATION_FAILED"
+
+
+class ScoringStatus(StrEnum):
+    COMPLETED = "COMPLETED"
+    POLICY_NOT_CONFIGURED = "POLICY_NOT_CONFIGURED"
+    RULE_EVALUATION_COMPLETE = "RULE_EVALUATION_COMPLETE"
+
+
+class RiskLevel(StrEnum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    CRITICAL = "CRITICAL"
+
+
+class Recommendation(StrEnum):
+    APPROVE = "APPROVE"
+    REVIEW = "REVIEW"
+    REJECT = "REJECT"
